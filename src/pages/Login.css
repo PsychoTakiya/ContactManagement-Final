@@ -1,0 +1,27 @@
+.login-container{
+    border: 1px solid black;
+    box-shadow: 2px;
+    display: flex;
+    flex-direction: column;
+    width: 50vh;
+    background: #d3d0d01e;
+    border-radius: 3px;
+    box-shadow: 5px 5px rgba(19, 18, 18, 0.363);
+    
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    margin-bottom: 10px;
+    justify-content: center;
+
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    
+
+}
