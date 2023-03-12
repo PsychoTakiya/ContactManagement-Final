@@ -1,7 +1,8 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-export default function Home() {
+export default function Home({addUsers}) {
+  console.log(addUsers)
   return (
     <div>
       <Typography variant="h1" color="initial">

@@ -9,12 +9,20 @@ import AddUser from "./pages/AddUser";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [addUsers, setAddUsers] = useState([]);
+
 
   //store the state users from signup and pass it onto login
   const handleSignUp = (user) => {
     setUsers([...users, user]);
     alert('Sign up successful! Please login.');
   };
+  
+
+  const handleAddUser = (addUser) => {
+    setAddUsers([...addUsers, addUser])
+    alert('Succesfully added Users!');
+  }
 
   //prompt login success
   const handleLogin = (user) => {
@@ -31,8 +39,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login users={users} onLogin={handleLogin} />}></Route>
           <Route path="/signup" element={<Signup onSignUp={handleSignUp} />}></Route>
-          <Route path="/home" element={<Home/>}></Route>
-          <Route path="/addUser" element={<AddUser/>}></Route>
+          <Route path="/home" element={<Home addUsers ={addUsers}/>}></Route>
+          <Route path="/addUser" element={<AddUser onAddUsers={ handleAddUser}/> }></Route>
         </Routes>
       </div>
     </div>
