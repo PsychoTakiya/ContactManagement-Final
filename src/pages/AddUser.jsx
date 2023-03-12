@@ -3,8 +3,14 @@ import { Typography, TextField, Button } from "@mui/material";
 import "./AddUser.css";
 import { useNavigate } from "react-router-dom";
 
-export default function AddUser() {
+export default function AddUser({onAddUser}) {
   let navigate = useNavigate();
+
+  const handleAddUser = (event) => {
+    const addUser = { firstName, middleName, lastName, phoneNumber, email, password };
+    onAddUser(addUser);
+    navigate("/home");
+  };
 
   return (
     <div className="user-container">

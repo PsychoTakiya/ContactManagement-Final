@@ -10,11 +10,13 @@ import AddUser from "./pages/AddUser";
 function App() {
   const [users, setUsers] = useState([]);
 
+  //store the state users from signup and pass it onto login
   const handleSignUp = (user) => {
     setUsers([...users, user]);
     alert('Sign up successful! Please login.');
   };
 
+  //prompt login success
   const handleLogin = (user) => {
     alert(`Welcome back, ${user.username}!`);
   };
