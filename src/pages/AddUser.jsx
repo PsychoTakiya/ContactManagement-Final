@@ -3,20 +3,63 @@ import { Typography, TextField, Button } from "@mui/material";
 import "./AddUser.css";
 import { useNavigate } from "react-router-dom";
 
-export default function AddUser({onAddUsers}) {
-    const [firstName, setFirstName] = useState("");
-    const [middleName, setMiddleName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+export default function AddUser({ onAddUsers,flag, editUser, onFlagChange }) {
+  
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [state, setState] = useState({
+    firstName:editUser.firstName,
+    middleName:editUser.middleName,
+    lastName : editUser.lastName,
+    phoneNumber : editUser.phoneNumber,
+    email:editUser.email,
+  })
   let navigate = useNavigate();
+ 
+  console.log(editUser.firstName+ "HEYYYYYYY " )
+  console.log(state.firstName+ "HEYYYYYYY " )
 
-  const handleAddUser = (event) => {
-    const addUser = { firstName, middleName, lastName, phoneNumber, email, password };
-    console.log(addUser)
+  const handleAddingUser = ()=>{
+    const addUser = {
+      firstName,
+      middleName,
+      lastName,
+      phoneNumber,
+      email,
+      password,
+    };
+    console.log(addUser);
     onAddUsers(addUser);
     navigate("/home");
+  }
+
+  const handleEditUser = ()=>{
+    Object.keys(editUser).map(res =>
+     { 
+      if(res === "firstName")  {editUser[res] = state.firstName }
+      if(res === "middleName")  {editUser[res] = state.middleName }
+      if(res === "lastName")  {editUser[res] = state.lastName }
+      if(res === "phoneNumber")  {editUser[res] = state.phoneNumber }
+      if(res === "email")  {editUser[res] = state.email }
+     }
+     )
+  }
+
+  const handleAddUser = (event) => {
+    event.preventDefault();
+    if (flag) {
+      handleEditUser()
+      onFlagChange()
+      alert("Data has been Successfully edited")
+      navigate("/home");
+    }
+    else{
+      handleAddingUser()
+    }
   };
 
   return (
@@ -31,15 +74,15 @@ export default function AddUser({onAddUsers}) {
           ENTER USER DETAILS
         </Typography>
       </div>
-      <form action="" method="post" onSubmit={handleAddUser}>
+      <form action="" method="post" onSubmit={ handleAddUser}>
         <div className="input-firstname">
           <TextField
             fullWidth
             id="outlined-basic"
             label="Enter First Name*"
             variant="outlined"
-            value={firstName}
-            onChange={(event) => setFirstName(event.target.value)}
+            value={flag? state.firstName:firstName}
+            onChange={(event) => flag? setState({...state,firstName:event.target.value}): setFirstName(event.target.value)}
           />
         </div>
         <div className="input-middlename">
@@ -48,8 +91,8 @@ export default function AddUser({onAddUsers}) {
             id="outlined-basic"
             label="Enter Middle Name*"
             variant="outlined"
-            value={middleName}
-            onChange={(event) => setMiddleName(event.target.value)}
+            value={flag? state.middleName:middleName}
+            onChange={(event) => flag? setState({...state,middleName:event.target.value}):setMiddleName(event.target.value)}
           />
         </div>
         <div className="input-lastname">
@@ -58,8 +101,8 @@ export default function AddUser({onAddUsers}) {
             id="outlined-basic"
             label="Enter Last Name*"
             variant="outlined"
-            value={lastName}
-            onChange={(event) => setLastName(event.target.value)}
+            value={flag?state.lastName:lastName}
+            onChange={(event) => flag? setState({...state,lastName:event.target.value}):setLastName(event.target.value)}
           />
         </div>
         <div className="input-phone">
@@ -68,8 +111,8 @@ export default function AddUser({onAddUsers}) {
             id="outlined-basic"
             label="Enter Phone Number*"
             variant="outlined"
-            value={phoneNumber}
-            onChange={(event) => setPhoneNumber(event.target.value)}
+            value={flag?state.phoneNumber:phoneNumber}
+            onChange={(event) => flag? setState({...state,phoneNumber:event.target.value}):setPhoneNumber(event.target.value)}
           />
         </div>
         <div className="input-email">
@@ -78,8 +121,8 @@ export default function AddUser({onAddUsers}) {
             id="outlined-basic"
             label="Enter Email*"
             variant="outlined"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={flag?state.email:email}
+            onChange={(event) => flag? setState({...state,email:event.target.value}):setEmail(event.target.value)}
           />
         </div>
         <div className="input-password">
@@ -95,7 +138,6 @@ export default function AddUser({onAddUsers}) {
             style={{ margin: "10px" }}
             color="success"
             variant="contained"
-            
           >
             CLEAR
           </Button>
