@@ -11,7 +11,6 @@ export default function Signup({ onSignUp }) {
   const navigate = useNavigate();
 
   const handleSignUp = (event) => {
-    // event.preventDefault();
     const user = { username, phoneNumber, email, password };
     onSignUp(user);
     navigate("/");
@@ -83,7 +82,7 @@ export default function Signup({ onSignUp }) {
             style={{ margin: "10px" }}
             variant="contained"
             color="primary"
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
           >
             Login
           </Button>

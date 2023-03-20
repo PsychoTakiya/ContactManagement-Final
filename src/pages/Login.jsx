@@ -2,6 +2,10 @@ import React,{useState} from "react";
 import { Typography, TextField, Button, Divider } from "@mui/material";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+// import {
+//   Button,
+//   Typography
+// } from '@ellucian/react-design-system/core';
 
 export default function Login({ users, onLogin }) {
   const [username, setUsername] = useState("");
@@ -10,7 +14,6 @@ export default function Login({ users, onLogin }) {
     console.log(users)
 
   const handleLogin = (event) => {
-    // event.preventDefault();
     const user = users.find(
       (user) => user.username === username && user.password === password
     );
