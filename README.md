@@ -1,3 +1,3 @@
 # Contact Management
 
-Link: https://fluffy-sprinkles-b2ff2f.netlify.app
+Link: https://main--glittering-raindrop-9c3fa2.netlify.app/
